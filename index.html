@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#102c56">
+  <meta name="description" content="Demonstração pública do SESMT Digital, projeto de portfólio de Mayane Freire.">
+  <title>SESMT Digital | Demonstração</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar" aria-label="Navegação principal">
+    <div class="brand"><div class="brand-icon">✚</div><div><strong>SESMT Digital</strong><small>Portfólio · Demo</small></div></div>
+    <nav>
+      <button class="nav active" data-page="dashboard">▦ <span>Painel</span></button>
+      <button class="nav" data-page="inspections">☑ <span>Inspeções</span></button>
+      <button class="nav" data-page="epis">▣ <span>Gestão de EPIs</span></button>
+      <button class="nav" data-page="users">♙ <span>Equipe fictícia</span></button>
+      <button class="nav" data-page="about">ⓘ <span>Sobre o projeto</span></button>
+    </nav>
+    <div class="side-foot">Demonstração isolada<br><small>Sem API, login ou banco real</small></div>
+  </aside>
+  <main>
+    <header class="header"><div><div class="eyebrow">GESTÃO DE SEGURANÇA · PORTFÓLIO</div><h1 id="pageTitle">Visão geral</h1></div><span class="demo-badge">AMBIENTE DEMONSTRATIVO</span></header>
+    <section class="page" id="page-dashboard">
+      <div class="hero"><div><span class="eyebrow">SESMT DIGITAL</span><h2>Segurança começa com<br>informação organizada.</h2><p>Uma prévia interativa das rotinas de inspeção e gestão de equipamentos de proteção individual.</p><button class="primary" data-goto="inspections">Experimentar inspeções →</button></div><div class="hero-mark">✓</div></div>
+      <div class="stats"><article><small>INSPEÇÕES</small><strong id="statInspections">0</strong><span>Registros demonstrativos</span></article><article><small>EM ANDAMENTO</small><strong id="statPending">0</strong><span>Inspeções abertas</span></article><article><small>EPIs</small><strong id="statEpis">0</strong><span>Tipos cadastrados</span></article><article><small>ENTREGAS</small><strong id="statDeliveries">0</strong><span>Entregas simuladas</span></article></div>
+      <div class="cols"><article class="panel"><h3>Rotinas disponíveis</h3><p>Explore o preenchimento de inspeções, a catalogação de EPIs e a visualização de dados demonstrativos.</p><div class="buttons"><button class="outline" data-goto="inspections">Inspeções</button><button class="outline" data-goto="epis">EPIs</button></div></article><article class="panel"><h3>Dados fictícios, sempre</h3><p>Este site não se conecta a banco de dados, não armazena credenciais e não envia informações a um servidor. As alterações da demonstração ficam apenas nesta página e desaparecem ao recarregar.</p><span class="safe">✓ Sem dados reais</span></article></div>
+      <article class="panel"><h3>Inspeções recentes</h3><div id="recentList"></div></article>
+    </section>
+    <section class="page hidden" id="page-inspections">
+      <div class="toolbar"><div><h2>Inspeções de segurança</h2><p>Fluxo demonstrativo de cadastro e acompanhamento.</p></div><button class="primary" id="newInspection">+ Nova inspeção</button></div>
+      <div class="panel hidden" id="inspectionFormWrap"><h3 id="inspectionFormTitle">Nova inspeção</h3><form id="inspectionForm"><input type="hidden" id="inspectionId"><div class="formgrid"><label>Unidade fictícia<input id="unit" required maxlength="80" placeholder="Ex.: Unidade de Demonstração"></label><label>Setor<input id="sector" required maxlength="80" placeholder="Ex.: Almoxarifado"></label><label>Técnico fictício<input id="inspector" required maxlength="80" placeholder="Ex.: Técnico Exemplo"></label><label>Data<input id="inspectionDate" type="date" required></label><label>Criticidade<select id="criticality"><option>Baixa</option><option selected>Média</option><option>Alta</option><option>Crítica</option></select></label><label>Situação<select id="inspectionStatus"><option>Em andamento</option><option>Concluída</option><option>Aguardando revisão</option></select></label></div><label>Observações<textarea id="observations" rows="3" maxlength="500" placeholder="Observações fictícias para ilustrar a funcionalidade"></textarea></label><p class="hint">Fotos, assinaturas e anexos reais foram intencionalmente desativados nesta edição pública.</p><div class="buttons"><button class="primary" type="submit">Salvar exemplo</button><button class="outline" type="button" id="cancelInspection">Cancelar</button></div></form></div>
+      <div class="panel table-scroll"><table><thead><tr><th>Data</th><th>Unidade / setor</th><th>Técnico</th><th>Criticidade</th><th>Situação</th><th>Ação</th></tr></thead><tbody id="inspectionRows"></tbody></table></div>
+    </section>
+    <section class="page hidden" id="page-epis"><div class="toolbar"><div><h2>Gestão de EPIs</h2><p>Inventário fictício e registro de entregas simuladas.</p></div></div><div class="cols"><article class="panel"><h3>Novo EPI fictício</h3><form id="epiForm"><label>Nome<input id="epiName" required maxlength="80" placeholder="Ex.: Óculos de proteção"></label><label>Quantidade<input id="epiQty" type="number" min="0" max="9999" value="10" required></label><button class="primary" type="submit">Cadastrar</button></form><div id="epiList"></div></article><article class="panel"><h3>Registrar entrega de exemplo</h3><form id="deliveryForm"><label>Colaborador fictício<input id="worker" required maxlength="80" placeholder="Ex.: Colaborador Demonstração"></label><label>EPI<select id="deliveryEpi" required></select></label><label>Quantidade<input id="deliveryQty" type="number" min="1" max="9999" value="1" required></label><button class="primary" type="submit">Registrar entrega</button></form><div id="deliveryList"></div></article></div></section>
+    <section class="page hidden" id="page-users"><article class="panel"><h2>Equipe fictícia</h2><p>Perfis exibidos apenas para ilustrar o módulo de usuários. Esta demonstração não realiza autenticação nem controle real de acesso.</p><div id="userList"></div></article></section>
+    <section class="page hidden" id="page-about"><article class="panel"><h2>Sobre o SESMT Digital</h2><p>Projeto de portfólio de <strong>Mayane Freire, Analista de Sistemas</strong>, com foco em experiência do usuário e rotinas digitais de Segurança e Saúde no Trabalho.</p><p>A versão profissional privada possui arquitetura própria. Este repositório é uma <strong>demonstração visual independente</strong>: não inclui o servidor original, algoritmos internos de segurança, configuração de infraestrutura, credenciais ou dados operacionais.</p><h3>Tecnologias desta demonstração</h3><p>HTML, CSS e JavaScript. Funciona como site estático sem dependências externas.</p><h3>Limitações intencionais</h3><p>Sem login, banco central, sincronização com PostgreSQL, captura de assinaturas, upload de fotos ou tratamento de dados pessoais. Todos os dados demonstrativos permanecem apenas em memória.</p></article></section>
+    <footer>SESMT Digital · Demonstração para portfólio · Mayane Freire</footer>
+  </main>
+</div>
+<div id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
